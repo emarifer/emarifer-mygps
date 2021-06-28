@@ -1,6 +1,6 @@
 <template>
   <v-container class="custom-background" fluid>
-    <v-row class="first-row my-n3" justify="center">
+    <v-row justify="center">
       <v-file-input
         ref="fileupload"
         dark
@@ -9,7 +9,7 @@
         v-model="track"
       >
       </v-file-input>
-      <v-btn class="input-track mb-2" rounded small color="primary" dark
+      <v-btn class="input-track my-2" rounded small color="primary" dark
         @click="uploadTrack"
       >
         <v-icon class="mr-2">mdi-upload</v-icon>
@@ -17,11 +17,11 @@
       </v-btn>
     </v-row>
 
-    <v-row class="second-row my-n3">
+    <v-row class="second-row">
       <div id="map"></div>
     </v-row>
 
-    <v-row align="center" fill-height>
+    <v-row align="center">
       <v-col cols="12">
         <v-btn @click="checkLocation" rounded :color="color" dark block>
           <v-icon class="mr-2">mdi-map-marker-radius</v-icon>
@@ -29,6 +29,12 @@
         </v-btn>
       </v-col>
     </v-row>
+    <v-snackbar bottom right :value="updateExists" :timeout="-1" color="grey darken-3">
+      Actualización disponible!! 😀
+      <v-btn @click="refreshApp" color="purple accent-1" class="ml-2">
+        <v-icon>mdi-refresh</v-icon>
+      </v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -39,21 +45,12 @@
     background-color: #1D2125;
   }
 
-  .first-row {
-    height: 18vh;
-  }
-
   .second-row {
-    height: 76vh;
+    height: 62vh;
   }
-
-  /* .third-row {
-    height: 12vh;
-  } */
 
   .input-track {
     width: 80vw;
-    height: 6vh;
     background-color: #ffffff2d;
   }
 
@@ -67,6 +64,7 @@
   import L from 'leaflet';
   import { Icon } from 'leaflet';
   import '../../node_modules/leaflet-gpx/gpx.js';
+  import update from '../mixins/update';
 
   export default {
     name: 'MyMap',
@@ -82,6 +80,7 @@
         circles: null,
       }
     },
+    mixins: [update],
     mounted() {
       delete Icon.Default.prototype._getIconUrl;
       Icon.Default.mergeOptions({
@@ -153,7 +152,7 @@
               });
       },
       displayTrack() {
-        // if (this.gpx) this.map.removeLayer(this.gpx);
+        
         let data;
         fetch(process.env.VUE_APP_DOWNLOAD)
           .then(res => res.ok ? res.text() : Promise.reject(res))

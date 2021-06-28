@@ -15,9 +15,5 @@
     components: {
       MyMap,
     },
-
-    data: () => ({
-      //
-    }),
   };
 </script>
