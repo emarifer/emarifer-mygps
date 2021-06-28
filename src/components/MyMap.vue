@@ -183,7 +183,7 @@
           this.initializeLocator();
         } else {
           this.locationActive = false;
-          this.buttonText = 'Inciar Navegación';
+          this.buttonText = 'Iniciar Navegación';
           this.color = 'teal accent-4';
           this.map.stopLocate();
           if (this.map.hasLayer(this.circles) && this.map.hasLayer(this.marker)) {
