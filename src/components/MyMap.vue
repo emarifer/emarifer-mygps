@@ -31,7 +31,7 @@
     </v-row>
     <v-snackbar bottom right :value="updateExists" :timeout="-1" color="grey darken-3">
       Actualización disponible!! 😀
-      <v-btn @click="refreshApp" color="purple accent-1" class="ml-2">
+      <v-btn @click="refreshApp" color="lime darken-1" class="ml-2">
         <v-icon>mdi-refresh</v-icon>
       </v-btn>
     </v-snackbar>
