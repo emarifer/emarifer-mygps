@@ -16,7 +16,7 @@ workbox.routing.registerRoute(
 
   workbox.routing.registerRoute(
       new RegExp('.*gpx'),
-      new workbox.strategies.NetworkFirst({
+      new workbox.strategies.CacheFirst({
         cacheName: 'cache-track'
       })
     ); // StaleWhileRevalidate
