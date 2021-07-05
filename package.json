@@ -9,6 +9,7 @@
   "dependencies": {
     "@mdi/font": "^5.9.55",
     "core-js": "^3.6.5",
+    "file-saver": "^2.0.5",
     "leaflet": "^1.7.1",
     "leaflet-gpx": "^1.5.2",
     "register-service-worker": "^1.7.1",
