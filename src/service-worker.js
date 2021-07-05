@@ -2,24 +2,24 @@
 workbox.core.setCacheNameDetails({prefix: "emarifer-mygps"});
 
 workbox.routing.registerRoute(
-    new RegExp('.*www.ign.es\/wms-inspire.*'),
-    new workbox.strategies.NetworkFirst({
-      cacheName: 'cache-maps',
-      plugins: [
-        new workbox.expiration.Plugin({
-          maxEntries: 300,// Limitamos a 60 el  número de recursos de ese directorio que queremos cachear.
-          maxAgeSeconds: 24 * 60 * 60// Tiempo de vida de la cache 
-        })
-      ]
-    })
-  ); // StaleWhileRevalidate
-
-  workbox.routing.registerRoute(
-      new RegExp('.*gpx'),
-      new workbox.strategies.CacheFirst({
-        cacheName: 'cache-track'
+  new RegExp('.*www.ign.es\/wms-inspire.*'),
+  new workbox.strategies.NetworkFirst({
+    cacheName: 'cache-map',
+    plugins: [
+      new workbox.expiration.Plugin({
+        maxEntries: 300,// Limitamos a 60 el  número de recursos de ese directorio que queremos cachear.
+        maxAgeSeconds: 24 * 60 * 60// Tiempo de vida de la cache 
       })
-    ); // StaleWhileRevalidate
+    ]
+  })
+); // StaleWhileRevalidate
+
+// workbox.routing.registerRoute(
+//   new RegExp('.*mdi.*'),
+//   new workbox.strategies.NetworkFirst({
+//     cacheName: 'cache-mdi'
+//   })
+// ); // NetworkFirst // No es necesaria esta cache
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
